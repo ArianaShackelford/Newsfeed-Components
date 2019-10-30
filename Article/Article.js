@@ -85,7 +85,7 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -100,15 +100,77 @@ const data = [
   </div>
 
   Hint: You will need to use createElement more than once here!
+*/
 
+
+
+
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+
+  const article = document.createElement('div');
+  const artTitle = document.createElement('h2');
+  const artDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const button = document.createElement('span');
+
+  //append elements
+
+  article.append(artTitle, artDate, button, para1, para2, para3);
+  
+
+  //classes 
+
+  article.classList.add('close', 'article');
+  artDate.classList.add('date');
+  button.classList.add('expandButton');
+
+  //set text content
+
+  artTitle.textContent = title;
+  artDate.textContent = date;
+  para1.textContent = firstParagraph;
+  para2.textContent = secondParagraph;
+  para3.textContent = thirdParagraph;
+  button.textContent = `	\u25BC`;
+/* 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-
+*/
+button.addEventListener('click', () => {
+  article.classList.toggle('article-open');
+  
+})
+/* 
   Step 3: return the entire component.
-
+  */
+return article;
+}
+  /* 
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  */
 
+  /* 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const myArticle = {
+  title:`Ahorn (Maple) info... but in German` ,
+  date: `October 30th, 2019`,
+  firstParagraph: `Die meisten Ahornbäume werden 10 bis 45 m hoch. Andere sind weniger als 10 Meter hohe Sträucher mit einer Anzahl kleiner Stämme, die aus dem Boden stammen. Die meisten Arten sind laubabwerfend und viele sind für ihre Herbstblattfarbe bekannt, aber einige in Südasien und im Mittelmeerraum sind immergrün. Die meisten sind in jungen Jahren schattentolerant und sind häufig Ufer-, Unter- oder Pionierarten, anstatt Bäume zu überragen. Es gibt einige Ausnahmen wie Zuckerahorn. Viele der Wurzelsysteme sind typischerweise dicht und faserig und hemmen das Wachstum anderer Vegetation unter ihnen. Einige Arten, insbesondere Acer cappadocicum, produzieren häufig Wurzelsprossen, die sich zu klonalen Kolonien entwickeln können. [4]`,
+  secondParagraph: `Acer circinatum (Weinahorn) Blätter zeigen die für die meisten Arten typischen Palmadern
+  Ahorn zeichnen sich durch gegenüberliegende Blattanordnung aus. Die Blätter der meisten Arten sind handförmig geadert und gelappt, wobei 3 bis 9 (selten bis 13) Adern zu einem Lappen führen, von denen eine zentral oder apikal ist. Eine kleine Anzahl von Arten unterscheidet sich darin, dass sie Palmate Compound, Pinnate Compound, Pinnate Veined oder Unlobed Leaves aufweisen. Einige Arten, darunter Acer griseum (Rindenahorn), Acer mandshuricum (Mandschurischer Ahorn), Acer maximowiczianum (Nikko-Ahorn) und Acer triflorum (Dreiblütiger Ahorn), haben Trifolienblätter. Eine Art, Acer negundo (Holunder), hat gefiederte zusammengesetzte Blätter, die einfach trifoliate sein können oder fünf, sieben oder selten neun Blättchen haben können. Einige, wie Acer laevigatum (Nepalahorn) und Acer carpinifolium (Hainbuchenahorn), haben gefiederte einfache Blätter.`,
+  thirdParagraph:`Acer Rubrum (roter Ahorn) Blumen
+  Ahornarten wie Acer rubrum können einhäusig, zweihäusig oder mehrhäusig sein. Die Blüten sind regelmäßig, pentamer und in Trauben, Corymbs oder Dolden getragen. Sie haben vier oder fünf Kelchblätter, vier oder fünf Blütenblätter von etwa 1 bis 6 mm Länge (bei manchen Arten nicht vorhanden), vier bis zehn Staubblätter von etwa 6 bis 10 mm Länge und zwei Stempel oder einen Stempel mit zwei Formen. Der Eierstock ist überlegen und hat zwei Fruchtblätter, deren Flügel die Blüten verlängern, so dass leicht zu erkennen ist, welche Blüten weiblich sind. Ahorn blüht im späten Winter oder frühen Frühling, bei den meisten Arten mit oder kurz nach dem Erscheinen der Blätter, bei einigen jedoch vor dem Ausblättern der Bäume. [5]` ,
+}
+
+data.push(myArticle);
+const body = document.querySelector('body');
+const newArticles = data.map(data => {
+ return body.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+})
+console.log(newArticles);
+console.log(data);
