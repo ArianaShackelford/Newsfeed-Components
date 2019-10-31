@@ -62,7 +62,7 @@ menuButton.appendChild(menu);
 
 //class names
 
-menu.classList.add('menu', 'menu--open');
+menu.classList.add('menu');
 
 
 menuButton.addEventListener('click', () => {
@@ -72,3 +72,6 @@ menuButton.addEventListener('click', () => {
  
 return menu;
 }
+
+
+TweenMax.from('.menu-button', 1 ,{opacity:0, scale:0, ease:Bounce.easeOut});
