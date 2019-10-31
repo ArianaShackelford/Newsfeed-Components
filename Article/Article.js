@@ -178,4 +178,5 @@ console.log(data);
 
 
 
-
+TweenMax.staggerFrom('.article', 2 ,{x: 1500, delay: 1,}, 0.2);
+TweenMax.from('.main-title', 1 ,{opacity:0, scale:0, ease:Elastic.easeOut});
